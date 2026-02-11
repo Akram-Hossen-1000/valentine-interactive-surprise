@@ -1,0 +1,168 @@
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: radial-gradient(circle, #100020, #000);
+  font-family: "Poppins", sans-serif;
+  color: white;
+}
+
+/* ========== FIREWORKS ========== */
+#fireworks {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.spark {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: explode 1.8s ease-out forwards;
+  box-shadow: 0 0 12px rgba(255,255,255,0.9);
+}
+
+@keyframes explode {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--x), var(--y)) scale(0.2);
+    opacity: 0;
+  }
+}
+
+/* ========== FLOATING EMOJI HEARTS (LIGHTER) ========== */
+#emojiHearts {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.emoji {
+  position: absolute;
+  font-size: 18px;
+  animation: float 12s linear infinite;
+  opacity: 0.85;
+}
+
+@keyframes float {
+  from { transform: translateY(100vh); }
+  to { transform: translateY(-10vh); }
+}
+
+/* ========== BIGGER HOVER AREA SPOTLIGHT ========== */
+.shadow {
+  --x: 50%;
+  --y: 50%;
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle 360px at var(--x) var(--y),
+  rgba(0,0,0,0) 0%,
+  rgba(0,0,0,0.7) 50%,
+  rgba(0,0,0,0.95) 100%);
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* ========== HINT TEXT ========== */
+.hint {
+  position: fixed;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 22px;
+  color: pink;
+  z-index: 5;
+  transition: .3s;
+}
+
+.hint.hidden {
+  opacity: 0;
+}
+
+/* ========== TEXT CONTAINER ========== */
+.hiddenText {
+  position: fixed;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  opacity: 0;
+  z-index: 6;
+  transition: opacity 0.4s ease;
+}
+
+.hiddenText.show {
+  opacity: 1;
+}
+
+/* ========== GRADIENT ANIMATED HEADLINE ========== */
+.headline {
+  font-family: "Great Vibes", cursive;
+  font-size: 55px;
+
+  background: linear-gradient(
+    90deg,
+    #ff00ff,
+    #00d4ff,
+    #ff0000,
+    #00ff00,
+    #ff00ff
+  );
+
+  background-size: 400%;
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: gradientShift 6s infinite linear,
+             fadeText 1.5s infinite alternate;
+}
+
+/* ========== SUBLINE STYLING ========== */
+.subline {
+  font-family: "Dancing Script", cursive;
+  font-size: 26px;
+  margin-top: 10px;
+
+  background: linear-gradient(90deg, #ff7eb3, #ff758c, #ff00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: fadeText 2s infinite alternate;
+}
+
+/* ========== SIGNATURE STYLING ========== */
+.signature {
+  margin-top: 15px;
+  font-size: 22px;
+  font-weight: bold;
+
+  background: linear-gradient(90deg, #00ffea, #00d4ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: fadeText 2s infinite alternate;
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes gradientShift {
+  0% { background-position: 0% }
+  100% { background-position: 100% }
+}
+
+@keyframes fadeText {
+  from { opacity: 0.6; }
+  to { opacity: 1; }
+}
+
+/* ========== MOBILE ========== */
+@media (max-width: 500px) {
+  .headline { font-size: 36px; }
+  .subline { font-size: 18px; }
+}
